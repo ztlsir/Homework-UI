@@ -14,7 +14,11 @@
         </el-menu>
       </el-header>
       <el-main>
-        <component v-bind:is="currentTabComponent"></component>
+        <el-row :gutter="20">
+          <el-col :span="16" :offset="4">
+            <component v-bind:is="currentTabComponent"></component>
+          </el-col>
+        </el-row>
       </el-main>
     </el-container>
   </div>
@@ -49,7 +53,6 @@ export default {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 </style>
