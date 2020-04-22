@@ -2,16 +2,17 @@
   <div>
     <h1>创建作业</h1>
     <h3>作文：</h3>
-    <el-form ref="form" :model="form" label-width="80px">
-      <el-form-item label="描述">
+    <el-form :rules="rules" ref="form" :model="form" label-width="80px">
+      <el-form-item label="描述" prop="description">
         <el-input type="textarea" v-model="form.description"></el-input>
       </el-form-item>
       <el-form-item label="图片">
         <el-upload
-          action="#"
+          action="/file-api/files/upload/image"
+          name="uploadImageCommand.multipartFile"
           :multiple="false"
           list-type="picture-card"
-          :auto-upload="false"
+          :auto-upload="true"
           :limit="1"
           :file-list="fileList"
         >
@@ -33,7 +34,7 @@
         </el-dialog>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">立即创建</el-button>
+        <el-button type="primary" @click="onSubmit('form')">立即创建</el-button>
         <el-button>取消</el-button>
       </el-form-item>
     </el-form>
@@ -52,6 +53,17 @@ export default {
       form: {
         description: "",
         imagePath: ""
+      },
+      rules: {
+        description: [
+          { required: true, message: "请输入描述信息", trigger: "blur" },
+          {
+            min: 10,
+            max: 9999,
+            message: "长度在 10 到 9999 个字符",
+            trigger: "blur"
+          }
+        ]
       }
     };
   },
@@ -63,8 +75,15 @@ export default {
       this.dialogImageUrl = file.url;
       this.dialogVisible = true;
     },
-    onSubmit() {
-      console.log("submit!");
+    onSubmit(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          alert("submit!");
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
     }
   }
 };
