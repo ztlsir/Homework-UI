@@ -9,7 +9,7 @@
       <el-form-item label="图片">
         <el-upload
           action="/file-api/files/upload/image"
-          name="uploadImageCommand.multipartFile"
+          name="multipartFile"
           :multiple="false"
           list-type="picture-card"
           :auto-upload="true"
