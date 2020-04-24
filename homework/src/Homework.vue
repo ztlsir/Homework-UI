@@ -8,7 +8,7 @@
           mode="horizontal"
           @select="handleSelect"
         >
-          <el-menu-item index="homework_Create">作业</el-menu-item>
+          <el-menu-item index="homework_List">作业</el-menu-item>
           <el-menu-item index="homeworkResult_Create">作业结果</el-menu-item>
           <el-menu-item index="成绩">成绩</el-menu-item>
         </el-menu>
@@ -25,19 +25,19 @@
 </template>
 
 <script>
-import homework_Create from "./components/homework/Create.vue";
+import homework_List from "./components/homework/List.vue";
 import homeworkResult_Create from "./components/homeworkResult/Create.vue";
 
 export default {
   name: "Homework",
   components: {
-    homework_Create,
+    homework_List,
     homeworkResult_Create
   },
   data() {
     return {
-      activeIndex: "homework_Create",
-      currentTabComponent: "homework_Create"
+      activeIndex: "homework_List",
+      currentTabComponent: "homework_List"
     };
   },
   methods: {
