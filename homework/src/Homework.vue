@@ -55,4 +55,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
+.el-menu-demo {
+  padding-left: 50px;
+}
 </style>
