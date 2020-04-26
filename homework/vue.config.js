@@ -1,10 +1,13 @@
 module.exports = {
+    configureWebpack: {
+        devtool: 'source-map'
+    },
     devServer: {
         proxy: {
             '/homework-api': {
                 target: 'http://localhost:802',
                 changeOrigin: true,
-                secure:false,
+                secure: false,
                 pathRewrite: {
                     '^/homework-api': '/'
                 }
@@ -12,7 +15,7 @@ module.exports = {
             '/file-api': {
                 target: 'http://localhost:802',
                 changeOrigin: true,
-                secure:false,
+                secure: false,
                 pathRewrite: {
                     '^/file-api': '/'
                 }

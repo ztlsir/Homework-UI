@@ -34,7 +34,7 @@
 
 <style>
 .el-table .success-row {
-  background: #C2DFFB;
+  background: #c2dffb;
 }
 
 .opreate-row {
@@ -53,8 +53,8 @@ export default {
     };
   },
   methods: {
-    create(){
-      alert(1);
+    create() {
+      
     },
     handleClick(row) {
       alert(row.id);

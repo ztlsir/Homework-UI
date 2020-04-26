@@ -3,20 +3,23 @@
     <el-container>
       <el-header>
         <el-menu
+          router
           :default-active="activeIndex"
           class="el-menu-demo"
           mode="horizontal"
           @select="handleSelect"
         >
-          <el-menu-item index="homework_List">作业</el-menu-item>
-          <el-menu-item index="homeworkResult_Create">作业结果</el-menu-item>
-          <el-menu-item index="成绩">成绩</el-menu-item>
+          <el-menu-item
+            v-for="route in routes"
+            :key="route.index"
+            :index="route.path"
+          >{{route.displayName}}</el-menu-item>
         </el-menu>
       </el-header>
       <el-main>
         <el-row :gutter="20">
           <el-col :span="16" :offset="4">
-            <component v-bind:is="currentTabComponent"></component>
+            <router-view></router-view>
           </el-col>
         </el-row>
       </el-main>
@@ -25,27 +28,20 @@
 </template>
 
 <script>
-import homework_List from "./components/homework/List.vue";
-import homeworkResult_Create from "./components/homeworkResult/Create.vue";
-
 export default {
   name: "Homework",
-  components: {
-    homework_List,
-    homeworkResult_Create
-  },
   data() {
     return {
-      activeIndex: "homework_List",
-      currentTabComponent: "homework_List"
+      routes: this.$router.options.routes.filter(route => route.isHeader),
+      activeIndex: this.$router.options.routes.filter(route => route.isHeader)[0].path,
     };
   },
-  methods: {
-    handleSelect(key) {
-      this.currentTabComponent = key;
-    }
-  }
-};
+   methods: {
+     handleSelect(key) {
+       this.currentTabComponent = key;
+     }
+   }
+}
 </script>
 
 <style>
