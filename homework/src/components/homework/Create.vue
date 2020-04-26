@@ -67,7 +67,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit('form')">立即创建</el-button>
-        <el-button>取消</el-button>
+        <el-button @click="cancel()">取消</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -90,11 +90,9 @@ export default {
         imageId: ""
       },
       rules: {
-        teacherId: [
-          { required: true, message: "请选择老师" , trigger: "blur"}
-        ],
+        teacherId: [{ required: true, message: "请选择老师", trigger: "blur" }],
         description: [
-          { required: true, message: "请输入描述信息"},
+          { required: true, message: "请输入描述信息" },
           {
             min: 10,
             max: 9999,
@@ -127,19 +125,27 @@ export default {
     onSubmit(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
+          var self=this;
           return this.$http
-            .post("/homework-api/homeworks",this.composeSubmitData())
+            .post("/homework-api/homeworks", this.composeSubmitData())
             .then(function(response) {
-              alert("success:"+JSON.stringify(response));
+              self.redirectToHomework();
+              console.log(response);
             })
             .catch(function(error) {
-              alert("fail:"+JSON.stringify(error));
+              alert("fail:" + JSON.stringify(error));
             });
         } else {
           console.log("error submit!!");
           return false;
         }
       });
+    },
+    cancel() {
+      this.redirectToHomework();
+    },
+    redirectToHomework() {
+      this.$router.push({ path: "/homework" });
     },
     composeSubmitData() {
       var content = {
