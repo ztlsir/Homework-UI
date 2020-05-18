@@ -3,6 +3,7 @@ module.exports = {
         devtool: 'source-map'
     },
     devServer: {
+        port: 2001,
         proxy: {
             '/homework-api': {
                 target: 'http://localhost:802',
