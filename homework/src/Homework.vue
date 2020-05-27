@@ -33,13 +33,13 @@ export default {
   data() {
     return {
       routes: this.$router.options.routes.filter(route => route.isHeader),
-      activeIndex: this.$router.options.routes.filter(
-        route => route.isHeader
-      )[0].path
+      activeIndex: this.$router.history.current.path
     };
   },
   methods: {
     handleSelect(key) {
+      console.log(this.$router)
+      console.log(this.activeIndex)
       this.currentTabComponent = key;
     }
   }
