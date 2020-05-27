@@ -38,8 +38,6 @@ export default {
   },
   methods: {
     handleSelect(key) {
-      console.log(this.$router)
-      console.log(this.activeIndex)
       this.currentTabComponent = key;
     }
   }
